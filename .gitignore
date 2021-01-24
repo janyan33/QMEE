@@ -2,4 +2,4 @@
 .Rhistory
 .RData
 .Ruserdata
-QMEE.Rproj
+QMEE.Rprojdebug.log $ git rm --cached QMEE.Rproj rm QMEE.Rproj $ git commit -m Start ignoring QMEE.Rproj
