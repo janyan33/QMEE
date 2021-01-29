@@ -10,17 +10,17 @@ library(tidyverse)
 ## Loading and inspecting association matrix data
 # BMB: "data/prox_network.csv" is definitely not reproducible
 # because your directory is Data, not data
-#
-prox.mat <- read.csv("Data/prox_network.csv")
+# JY changed directory name to data b/c I prefer lowercase
+prox.mat <- read.csv("data/prox_network.csv")
 head(prox.mat)
 tail(prox.mat)
 
 ## Loading and inspecting node attribute data
-attr <- read.csv("Data/attributes.csv", stringsAsFactors = TRUE)
+attr <- read.csv("data/attributes.csv", stringsAsFactors = TRUE)
 head(attr)
 tail(attr)
 # BMB: there is probably a better way to clean this, e.g.
-attr <- (read.csv("Data/attributes.csv", stringsAsFactors=TRUE)
+attr <- (read.csv("data/attributes.csv", stringsAsFactors=TRUE)
     %>% janitor::remove_empty(which=c("rows","cols"))
     ## doesn't quite work, we need a way to remove rows with
     ## blank OR NA
