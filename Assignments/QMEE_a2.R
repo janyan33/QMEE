@@ -13,11 +13,11 @@ str(groups)
 
 ## Creating a list of groups where each individual is separated
 group.list <- strsplit(groups$Group.Members, " ")
+head(group.list)
 
 ## Creating a group x individual (k x n) matrix
 gbi_matrix <- get_group_by_individual(group.list, data_format = "groups")
-view(gbi_matrix)
-view(groups$Group.Members)
+head(gbi_matrix)
 
 ## Converting k x n matrix into a network (n x n matrix) and an igraph object
 ibi_matrix <- get_network(gbi_matrix, data_format = "GBI")
