@@ -6,6 +6,8 @@ library(igraph)
 library(plot.matrix)
 library(janitor)
 
+## pdf(height=4)
+
 ## Import group membership SNA data
 groups <- read.csv("data/bbsna_rep1_groups.csv")
 head(groups)
@@ -55,5 +57,9 @@ plot(prox.igraph, edge.curved = 0, edge.color = "black", weighted = TRUE, layout
 
 ## Making edge weight differences more distinct
 E(prox.igraph)$width <- E(prox.igraph)$weight*15 # Is it ok to just multiply them like this?? 
+## JD: Yes; the width is just an aesthetic. There may be a better way to do it, though…
 plot(prox.igraph, edge.curved = 0, edge.color = "black", weighted = TRUE, layout = layout_nicely(prox.igraph))
 
+## JD: Looks cool. Can you say explicitly what the edge weights _mean_?
+## We haven't talked yet about controlling graph output shape, but I was not able to make the heatmaps not cut off the 
+## Grade 2.2/3
