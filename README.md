@@ -11,13 +11,18 @@ With this script, I am now able to easily convert group membership data from sub
 
 # Assignment 3: Visualization
 ## Background
-This week I added data from my second replicate and used the igraph package to calculate some node-level social network metrics. Using these values, I used ggplot to explore my hypotheses. My first prediction was that females will be less social than males. My second prediction is that females who are less social will recieve less sexual harassment. The first four chunks of code are just for calculating the network metrics I used but I kept them all in the same script since that's most convenient for my project. 
+This week I added data from my second replicate and used the igraph package to calculate some node-level social network metrics. Using these values, I used ggplot to explore my hypotheses. My first prediction was that females will be less social than males. My second prediction is that females who are less social will recieve less sexual harassment. The first four chunks of code are just for calculating the network metrics I used but I kept them all in the same script since that's most convenient for my project.
 
-## Plot 1: Both replicates males vs. females boxplot
-This boxplot 
+## Plot 1: Males vs. female sociability index boxplot
+This boxplot shows sociability index scores as a function of sex and hour (how many hours into the dark phase at the time of scanning). While sex is my most important predictor variable, I put hour on the x-axis because it is continuous and used color to indicate the two sexes. Hour was our next most relevant predictor because we expected bedbugs to generally exhibit highest levels of sociability at the beginning and end of their dark phase. I considered using geom_jitter() to show all the data because my dataset feels relatively small but decided against it because the figure looked too crowded. 
 
 ## Plot 2: 
+This boxplot shows strength (weighted degree) based on the aggregation network for males vs. females. 
 
 ## Plot 3: 
+This scatterplot shows whether strength based on the aggregation network is correlated with in-strength based on the mounting network and is meant to show whether more social individuals receive more sexual harassment. 
+
+
+
 
 ## Plot 4: 
