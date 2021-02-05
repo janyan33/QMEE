@@ -117,9 +117,10 @@ soc_sexes <- soc %>%
              filter(sex == "male" | sex == "female")
 soc_sexes$scan <- as.factor(soc_sexes$scan)
 
+
 ## Plotting sociability index 
 ggplot(data = soc_sexes, aes(y = soc.index, x = scan, fill = sex)) + geom_boxplot() + 
-       theme_classic() + scale_color_manual("red", "blue") + 
+       theme_classic() + scale_fill_manual(values=c("#f0553a", "#4A75D2")) + 
         xlab("Hour") + ylab("Sociability index") + theme(legend.title=element_blank())
         # + geom_jitter() too crowded looking
 
@@ -135,9 +136,10 @@ ggplot(data = attr, aes(y = agg_strength, x = sex)) + geom_boxplot() + theme_cla
 # The edges in the mounting network represent total # of mountings received
 ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex)) + geom_point() + theme_classic() + 
        geom_smooth(method = lm, se = FALSE) + xlab("Aggregation network strength") + ylab("Mounting network in-strength") + 
-       theme(legend.title=element_blank())
+       theme(legend.title=element_blank()) + scale_color_manual(values=c("#f0553a", "#4A75D2"))
 
 ## Plotting correlation between aggregation strength and mounting in-strength while separating the two replicates
 ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex)) + geom_point() + theme_light() + 
        geom_smooth(method = lm, se = FALSE) +  xlab("Aggregation network strength") + ylab("Mounting network in-strength") +
-       theme(legend.title=element_blank()) + facet_grid(rows = vars(replicate), labeller = label_both)
+       theme(legend.title=element_blank()) + scale_color_manual(values=c("#f0553a", "#4A75D2")) +
+       facet_grid(rows = vars(replicate), labeller = label_both) 
