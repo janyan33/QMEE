@@ -60,7 +60,6 @@ agg_strength_2 <- strength(prox_2, v = V(prox_2), mode = c("all"), loops = F)
 
 #####################################################################################################################################
 ## REPLICATE 1 MOUNTING
-
 ## Loading replicate 1 mounting matrix in
 mounting_1 <- read.csv("data/bbsna_mounting_matrix_rep1.csv", header=T, row.names=1)
 mounting_1[is.na(mounting_1)] = 0
@@ -102,8 +101,7 @@ attr_2 <- read.csv("data/bbsna_attributes_raw.csv", na.strings = c("","NA")) %>%
 
 ################################################################################################################################
 ## ASSIGNMENT 3 PLOTS
-
-# Getting data
+# Combining data from above networks and calculations
 attr <- rbind(attr_1, attr_2)
 attr$replicate <- as.factor(attr$replicate)
 
