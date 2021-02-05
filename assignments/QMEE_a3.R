@@ -117,7 +117,6 @@ soc_sexes <- soc %>%
              filter(sex == "male" | sex == "female")
 soc_sexes$scan <- as.factor(soc_sexes$scan)
 
-
 ## Plotting sociability index 
 ggplot(data = soc_sexes, aes(y = soc.index, x = scan, fill = sex)) + geom_boxplot() + 
        theme_classic() + scale_fill_manual(values=c("#f0553a", "#4A75D2")) + 
