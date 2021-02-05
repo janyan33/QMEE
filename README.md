@@ -10,7 +10,7 @@ This week I worked on figuring out how to use R to convert my raw data which con
 With this script, I am now able to easily convert group membership data from subsequent replicates into igraph objects or association matrices. With an igraph object, I believe I can use a variety of functions within the igraph package to calculate both network-level and individual-level characteristics. I am interested in whether the bedbug population formed distinct sub-communities so I will need to test for modularity. I would like to test for assortativity based on sex to see if individuals have a tendency to affiliate with same-sex conspecifics. Lastly, I would like to investigate whether one sex is more social than the other. To do this, I could calculate degree for each individual and do a t-test between the sexes. Alternatively, I think the standard convention is to do something that involves using my observed data to run several random simulations but I'll have to read into this more. 
 
 # Assignment 3: Visualization
-# Background
+## Background
 This week I added data from my second replicate and used the igraph package to calculate some node-level social network metrics. Using these values, I used ggplot to explore my hypotheses. My first prediction was that females will be less social than males. My second prediction is that females who are less social will recieve less sexual harassment. The first four chunks of code are just for calculating the network metrics I used but I kept them all in the same script since that's most convenient for my project. 
 
 ## Plot 1: Both replicates males vs. females boxplot
