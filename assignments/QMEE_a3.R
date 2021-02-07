@@ -134,11 +134,11 @@ ggplot(data = attr, aes(y = agg_strength, x = sex)) + geom_boxplot() + theme_cla
 ## Plotting correlation between aggregation strength and mounting in-strength 
 # The edges in the mounting network represent total # of mountings received
 ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex)) + geom_point() + theme_classic() + 
-       geom_smooth(method = lm, se = FALSE) + xlab("Aggregation network strength") + ylab("Mounting network in-strength") + 
+       geom_smooth(method = lm, se = FALSE, aes(group = replicate)) + xlab("Aggregation network strength") + ylab("Mounting network in-strength") + 
        theme(legend.title=element_blank()) + scale_color_manual(values=c("#f0553a", "#4A75D2"))
 
 ## Plotting correlation between aggregation strength and mounting in-strength while separating the two replicates
-ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex)) + geom_point() + theme_light() + 
-       geom_smooth(method = lm, se = FALSE) +  xlab("Aggregation network strength") + ylab("Mounting network in-strength") +
+ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex, group)) + geom_point() + theme_light() + 
+       geom_smooth(method = lm, se = FALSE, aes(group = replicate), color = "black") +  xlab("Aggregation network strength") + ylab("Mounting network in-strength") +
        theme(legend.title=element_blank()) + scale_color_manual(values=c("#f0553a", "#4A75D2")) +
        facet_grid(rows = vars(replicate), labeller = label_both) 
