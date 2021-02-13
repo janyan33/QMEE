@@ -13,7 +13,8 @@ not assorted by sex. I can then report on what percent of association indexes fr
 than the association index from my observed network to assess whether the observed networks are more assorted by sex 
 than expected by random chance. I believe if the observed value is greater than 95% of the simulated association indexes
 then my observed assortment value would be significant at p < 0.05 although I may have to adjust for multiple comparisons
-if I repeat the same process with each of the 6 replicates I intend on running. This appears to be the most robust way
-of testing my hypothesis but I'm still kind of unsure of it all and will have to do some more reading before attempting it. 
+if I repeat the same process with each of the 6 replicates I intend on running. This appears to be the most straight-forward
+but also still robust way of testing my hypothesis but I'm still kind of unsure of it all and will have to do some more 
+reading before attempting it. 
 
 
