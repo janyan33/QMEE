@@ -202,11 +202,10 @@ ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex)) +
        theme(legend.title=element_blank()) + scale_color_manual(values=c("#f0553a", "#4A75D2"))
 
 ## Plotting correlation between aggregation strength and mounting in-strength while separating the two replicates
-ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex, group)) + geom_point() + theme_light() + 
-       geom_smooth(method = lm, se = FALSE, aes(group = replicate), color = "black") +  xlab("Aggregation network strength") + ylab("Mounting network in-strength") +
+ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex, group)) + geom_point() + theme_bw() + 
+       geom_smooth(method = lm, se = FALSE) +  xlab("Aggregation network strength") + ylab("Mounting network in-strength") +
        theme(legend.title=element_blank()) + scale_color_manual(values=c("#f0553a", "#4A75D2")) +
-       facet_grid(rows = vars(replicate), labeller = label_both) 
-
+       facet_grid(rows = vars(replicate), labeller = label_both) + theme(text = element_text(size = 15))
 
 theme_set(theme_classic())
 gg1 <- (ggplot(data = attr, aes(x = agg_strength, y = mount_in_strength, color = sex))

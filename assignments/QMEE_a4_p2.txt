@@ -1,0 +1,19 @@
+My hypothesis is that my bedbug populations will show assortment by sex as this could be a social strategy
+employed by females to reap the benefits of aggregation without exposing themselves to unsolicited 
+mating attempts from males. This is one of three predictions that I wrote in a proposal before I started 
+collecting data. 
+
+To test it, I will calculate the assortment index for each replicate using
+the function assortment.discrete from the R package assortnet. The exact formula that is used
+to calculate the assortment index can be found in Farine, 2014. I then intend on creating nulls models 
+using data-stream permutations which will sequentially swap observations between individuals at the dyadic 
+level to create new networks. I will then calculate the association index for each of these randomly generated networks 
+to create a distribution that represents expected association indexes under the assumption that bedbug populations are 
+not assorted by sex. I can then report on what percent of association indexes from the simulated networks is lesser
+than the association index from my observed network to assess whether the observed networks are more assorted by sex 
+than expected by random chance. I believe if the observed value is greater than 95% of the simulated association indexes
+then my observed assortment value would be significant at p < 0.05 although I may have to adjust for multiple comparisons
+if I repeat the same process with each of the 6 replicates I intend on running. This appears to be the most robust way
+of testing my hypothesis but I'm still kind of unsure of it all and will have to do some more reading before attempting it. 
+
+

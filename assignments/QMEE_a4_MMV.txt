@@ -1,0 +1,21 @@
+Calculating the likelihood that this random person who tested positive for MMV indeed has MMV:
+
+Assuming this population has 100 people, 1 person will have MMV and will test positive. 
+Of the other 99 people, 5% will also test positive (roughly 5 people). 
+That means, 6 people will test positive, but only 1/6 will actually have MMV. 
+Therefore, if a random person tests positive for MMV, they only have a 16.67% chance of actually having MMV. 
+
+What would I tell my friend who tested positive for MMV?
+
+If it is the case that ALL MMD patients have an urge to make mathematical models rather than the modeling just being
+a common or likely symptom, I would ask my friend if they feel the urge to make mathematical models
+and observe their behaviour to see if they're making mathematical models. If not, I would tell my friend that I don't
+think they have MMD because they show none of the symptoms and explain how 83% of people who test positive don't have MMD.
+However, I suppose if they wanted more evidence and tests are plentiful + convenient to get, they could get tested again.  
+If the friend does have a compulsory urge to create mathematical models (and this is unlike them) I think it is 
+pretty fair to assume they have MMD given the fact that there isn't any other known cause for the behaviour. 
+However, again, if they wanted more evidence, they can get tested again. I would tell them that if they got another test 
+and tested positive, they now have an ~80% chance of having MMD because their prior probability had changed after testing
+positive for the first test. If they go for a third test and test positive again, the probability that they have MMD 
+would be over 99%. 
+
