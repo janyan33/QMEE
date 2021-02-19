@@ -16,4 +16,5 @@ then my observed assortment value would be significant at p < 0.05 although I ma
 if I repeat the same process with each of the 6 replicates I intend on running. This appears to be the most robust way
 of testing my hypothesis but I'm still kind of unsure of it all and will have to do some more reading before attempting it. 
 
+JD: Sophisticated and reasonable. Grade 2.1/3
 
