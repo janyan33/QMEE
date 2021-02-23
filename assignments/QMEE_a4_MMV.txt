@@ -1,9 +1,9 @@
-Calculating the likelihood that this random person who tested positive for MMV indeed has MMV:
-
 Assuming this population has 100 people, 1 person will have MMV and will test positive. 
 Of the other 99 people, 5% will also test positive (roughly 5 people). 
 That means, 6 people will test positive, but only 1/6 will actually have MMV. 
 Therefore, if a random person tests positive for MMV, they only have a 16.67% chance of actually having MMV. 
+
+JD: If you rounded off to 5 people, why are you reporting the answer to 5 significant figures.
 
 What would I tell my friend who tested positive for MMV?
 
@@ -19,3 +19,4 @@ and tested positive, they now have an ~80% chance of having MMD because their pr
 positive for the first test. If they go for a third test and test positive again, the probability that they have MMD 
 would be over 99%. 
 
+JD: Nice thoughts, but you're missing a key point. We'll discuss.
