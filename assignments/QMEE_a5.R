@@ -3,8 +3,6 @@
 library(tidyverse)
 library(asnipe)
 library(igraph)
-library(plot.matrix)
-library(janitor)
 library(assortnet)
 
 ## Loading in association data
@@ -18,8 +16,8 @@ attr_2 <- attr %>%
   filter(ID != "Q")
 
 ## Creating a generic function that creates an association matrix for each rep
-func_make_matrix <- function(x) {
-  group_list <- strsplit(x$Members, " ")
+func_make_matrix <- function(matrix) {
+  group_list <- strsplit(matrix$Members, " ")
   ## Creating a group x individual (k x n) matrix
   gbi_matrix <- get_group_by_individual(group_list, data_format = "groups")
   ## Converting k x n matrix into a network (n x n matrix) and an igraph object
@@ -145,12 +143,13 @@ func_permute_strength(matrix = prox_mat_1, attributes = attr_1, title = "Female 
 func_permute_strength(matrix = prox_mat_2, attributes = attr_2, title = "Female vs. male strength rep 2")
 
 ## Comparing my permutation strength results with a classical test
+func_lm_strength <- function(matrix, attributes){
+  prox_igraph <- graph_from_adjacency_matrix(matrix, diag = FALSE, weighted = TRUE, mode = "undirected")
+  strengths <- strength(prox_igraph, v = V(prox_igraph), mode = c("all"), loops = FALSE)
+  attr <- cbind(attributes, strength = strengths)
+  strength_model <- lm(data = attr, strength ~ sex)
+  return(summary(strength_model))
+}
 
-
-
-
-
-
-
-
-
+func_lm_strength(matrix = prox_mat_1, attributes = attr_1)
+func_lm_strength(matrix = prox_mat_2, attributes = attr_2)
