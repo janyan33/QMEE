@@ -22,4 +22,8 @@ value from each of them to compare. I chose to use coefficient values because th
 2015 on the basis that it is "easily interpretable" and has the added benefit of presenting effect size. However, the result
 ended up being exactly the same as when I used difference scores anyway. Like for hypothesis 1, I obtained my p-values by
 doubling the proprotion of random coefficient values that were either higher or lower than my observed value depending on
-which tail was smaller. 
+which tail was smaller. In addition, I tested this hypothesis with a classical test by fitting a linear model (strength ~ sex) 
+to my attribute data without using permutations. While the p-values I obtained from this test were similar to the permutation
+version, Farine and Whitehead., 2015 demonstrate that the permutation test is more robust to sampling bias and less likely
+to produce spurious results in cases where there are differences in how easily observable individuals are as a function of 
+their class. 
