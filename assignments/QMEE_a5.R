@@ -13,7 +13,7 @@ attr_1 <- attr %>%
 
 attr_2 <- attr %>% 
   filter(replicate == 2) %>% 
-  filter(ID != "Q")
+  filter(ID != "Q") #Could probably avoid splitting this but will fix this in the future
 
 ## Creating a generic function that creates an association matrix for each rep
 func_make_matrix <- function(matrix) {
@@ -139,8 +139,8 @@ func_permute_assoc(matrix = prox_mat_1, attributes = attr_1, title = "Assortativ
 func_permute_assoc(matrix = prox_mat_2, attributes = attr_2, title = "Assortativity replicate 2")
 
 ## Using my second function to do the strength permutations on each of my two replicates
-func_permute_strength(matrix = prox_mat_1, attributes = attr_1, title = "Female vs. male strength rep 1")     
-func_permute_strength(matrix = prox_mat_2, attributes = attr_2, title = "Female vs. male strength rep 2")
+func_permute_strength(matrix = prox_mat_1, attributes = attr_1, title = "Male vs. female strength rep 1")     
+func_permute_strength(matrix = prox_mat_2, attributes = attr_2, title = "Male vs. female strength rep 2")
 
 ## Comparing my permutation strength results with a classical test
 func_lm_strength <- function(matrix, attributes){
