@@ -123,7 +123,7 @@ func_permute_strength <- function(matrix, attributes, title){
   ## Add observed value to the list of results
   strength_results <- c(obs_coef, strength_results)
   
-  hist(strength_results, main = title, xlab = "Coefficient value from strength ~ sex")
+  hist(strength_results, main = title, xlab = "Coefficient value for sexMale")
   abline(v = obs_coef, col = "red")
   
   ## Compute p-value
@@ -141,6 +141,7 @@ func_permute_assoc(matrix = prox_mat_2, attributes = attr_2, title = "Assortativ
 ## Using my second function to do the strength permutations on each of my two replicates
 func_permute_strength(matrix = prox_mat_1, attributes = attr_1, title = "Male vs. female strength rep 1")     
 func_permute_strength(matrix = prox_mat_2, attributes = attr_2, title = "Male vs. female strength rep 2")
+# positive values indcate average male strength > average female strength
 
 ## Comparing my permutation strength results with a classical test
 func_lm_strength <- function(matrix, attributes){
