@@ -144,4 +144,13 @@ func_permute_assoc(matrix = prox_mat_2, attributes = attr_2, title = "Assortativ
 func_permute_strength(matrix = prox_mat_1, attributes = attr_1, title = "Female vs. male strength rep 1")     
 func_permute_strength(matrix = prox_mat_2, attributes = attr_2, title = "Female vs. male strength rep 2")
 
+## Comparing my permutation strength results with a classical test
+
+
+
+
+
+
+
+
 

@@ -1,0 +1,25 @@
+Hypothesis #1: 
+I wanted to test the hypothesis that female bedbugs preferentially associate with other females 
+rather than males as a means to avoid sexual harassment. To achieve this, I calculated the assortativity 
+coefficient which is a value ranging from -1 to 1 for my social networks based on sex. I then created 
+1000 randomized networks based on shuffling the nodes of my observed network while conserving the edges.
+Since I directly observed social aggregation based on touch rather than inferring interactions based on 
+something like distance, I decided to go with node-label permutation because it is suggested by 
+Croft et al., 2011 for when you are fairly confident in the edges of the network. By randomly shuffling 
+the nodes, my null model assumes that any individual can occupy any network position. This seems fair 
+seeing as there appear to be no spatial or individual contraints in my experimental setup (all bedbugs 
+can move freely between shelters rather quickly). I then calculate the same assortativity coefficient 
+for all 1000 randomized networks and obtain a p-value by calculating the proportion of assortativity coefficients 
+from the null distribution that are either higher or lower than the observed value depending on which tail is smaller.
+I doubled these p-values because I'm running a two-tailed test. 
+
+Hypothesis #2: 
+I wanted to test the hypothesis that males on average have higher strength (a measure of connectedness) compared 
+to females. Like in hypothesis 1, I approached this by performing a node-label permutation of my networks 1000 times. 
+At first I ran the permutation on difference scores between mean male strength and mean female strength. I then switched
+to fitting a linear model (strength ~ sex) to my observed and each of my randomized networks and extracted the coefficient
+value from each of them to compare. I chose to use coefficient values because this was suggested by Farine and Whitehead.,
+2015 on the basis that it is "easily interpretable" and has the added benefit of presenting effect size. However, the result
+ended up being exactly the same as when I used difference scores anyway. Like for hypothesis 1, I obtained my p-values by
+doubling the proprotion of random coefficient values that were either higher or lower than my observed value depending on
+which tail was smaller. 
