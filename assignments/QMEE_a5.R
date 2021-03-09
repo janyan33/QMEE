@@ -8,11 +8,11 @@ library(assortnet)
 ## Loading in association data
 groups <- read.csv("data/bbsna_aggregations.csv")
 attr <- read.csv("data/bbsna_attributes.csv", stringsAsFactors = FALSE)
-attr_1 <- attr %>% 
-  filter(replicate == 1)
+attr_prelim <- attr %>% 
+  filter(replicate == "prelim")
 
-attr_2 <- attr %>% 
-  filter(replicate == 2) %>% 
+attr_1 <- attr %>% 
+  filter(replicate == 1) %>% 
   filter(ID != "Q") #Could probably avoid splitting this but will fix this in the future
 
 ## Creating a generic function that creates an association matrix for each rep
@@ -29,12 +29,12 @@ func_make_matrix <- function(matrix) {
 }
 
 ## Using my function to create an association matrix for each rep
-prox_mat_1 <- groups %>% 
-  filter(Replicate == 1) %>% 
+prox_mat_prelim <- groups %>% 
+  filter(Replicate == "prelim") %>% 
   func_make_matrix()
 
-prox_mat_2 <- groups %>% 
-  filter(Replicate == 2) %>% 
+prox_mat_1 <- groups %>% 
+  filter(Replicate == 1) %>% 
   func_make_matrix()
 
 ## HYPOTHESIS 1: Are bedbug populations assorted by sex?
@@ -135,12 +135,12 @@ func_permute_strength <- function(matrix, attributes, title){
 }
 
 ## Using my first function to do the assortativity permutations on each of my two replicates
+func_permute_assoc(matrix = prox_mat_prelim, attributes = attr_prelim, title = "Assortativity prelim exp")
 func_permute_assoc(matrix = prox_mat_1, attributes = attr_1, title = "Assortativity replicate 1")
-func_permute_assoc(matrix = prox_mat_2, attributes = attr_2, title = "Assortativity replicate 2")
 
 ## Using my second function to do the strength permutations on each of my two replicates
-func_permute_strength(matrix = prox_mat_1, attributes = attr_1, title = "Male vs. female strength rep 1")     
-func_permute_strength(matrix = prox_mat_2, attributes = attr_2, title = "Male vs. female strength rep 2")
+func_permute_strength(matrix = prox_mat_prelim, attributes = attr_prelim, title = "Male vs. female strength prelim exp")     
+func_permute_strength(matrix = prox_mat_1, attributes = attr_1, title = "Male vs. female strength rep 1")
 # positive values indcate average male strength > average female strength
 
 ## Comparing my permutation strength results with a classical test
@@ -152,5 +152,5 @@ func_lm_strength <- function(matrix, attributes){
   return(summary(strength_model))
 }
 
+func_lm_strength(matrix = prox_mat_prelim, attributes = attr_prelim)
 func_lm_strength(matrix = prox_mat_1, attributes = attr_1)
-func_lm_strength(matrix = prox_mat_2, attributes = attr_2)
