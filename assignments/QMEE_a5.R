@@ -1,9 +1,10 @@
 ## setwd("C:/Users/jy33/OneDrive/Desktop/R/QMEE")
 
-library(tidyverse)
 library(asnipe)
 library(igraph)
 library(assortnet)
+sessionInfo()
+library(tidyverse)
 
 ## Loading in association data
 groups <- read.csv("data/bbsna_aggregations.csv")
@@ -13,7 +14,7 @@ attr_1 <- attr %>%
 
 attr_2 <- attr %>% 
   filter(replicate == 2) %>% 
-  filter(ID != "Q") #Could probably avoid splitting this but will fix this in the future
+  filter(ID != "Q") #Could probably avoid splitting this but will fix this in the future ## BMB: OK
 
 ## Creating a generic function that creates an association matrix for each rep
 func_make_matrix <- function(matrix) {
@@ -33,11 +34,18 @@ prox_mat_1 <- groups %>%
   filter(Replicate == 1) %>% 
   func_make_matrix()
 
+stopifnot(nrow(prox_mat_1) == nrow(attr_1))
+
 prox_mat_2 <- groups %>% 
   filter(Replicate == 2) %>% 
-  func_make_matrix()
+    func_make_matrix()
+
+stopifnot(nrow(prox_mat_2) == nrow(attr_2))
+
 
 ## HYPOTHESIS 1: Are bedbug populations assorted by sex?
+## BMB: "how are"? Can you make a more specific prediction?
+## (assortative vs disassortative?)
 
 ## Creating a function that does the permutation test for assortativity index 
 func_permute_assoc <- function(matrix, attributes, title){
