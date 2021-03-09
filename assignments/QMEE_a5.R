@@ -9,18 +9,13 @@ library(tidyverse)
 ## Loading in association data
 groups <- read.csv("data/bbsna_aggregations.csv")
 attr <- read.csv("data/bbsna_attributes.csv", stringsAsFactors = FALSE)
+
 attr_prelim <- attr %>% 
   filter(replicate == "prelim")
 
-<<<<<<< HEAD
 attr_1 <- attr %>% 
   filter(replicate == 1) %>% 
   filter(ID != "Q") #Could probably avoid splitting this but will fix this in the future
-=======
-attr_2 <- attr %>% 
-  filter(replicate == 2) %>% 
-  filter(ID != "Q") #Could probably avoid splitting this but will fix this in the future ## BMB: OK
->>>>>>> 1ad287a39aa938b5828a3fb98b4408a8e2e42ef4
 
 ## Creating a generic function that creates an association matrix for each rep
 func_make_matrix <- function(matrix) {
@@ -40,20 +35,13 @@ prox_mat_prelim <- groups %>%
   filter(Replicate == "prelim") %>% 
   func_make_matrix()
 
-<<<<<<< HEAD
-prox_mat_1 <- groups %>% 
-  filter(Replicate == 1) %>% 
-  func_make_matrix()
-=======
 stopifnot(nrow(prox_mat_1) == nrow(attr_1))
 
-prox_mat_2 <- groups %>% 
-  filter(Replicate == 2) %>% 
+prox_mat_1 <- groups %>% 
+  filter(Replicate == 1) %>% 
     func_make_matrix()
 
 stopifnot(nrow(prox_mat_2) == nrow(attr_2))
-
->>>>>>> 1ad287a39aa938b5828a3fb98b4408a8e2e42ef4
 
 ## HYPOTHESIS 1: Are bedbug populations assorted by sex?
 ## BMB: "how are"? Can you make a more specific prediction?
@@ -70,7 +58,6 @@ func_permute_assoc <- function(matrix, attributes, title){
   ## Doing the permutations using a for loop
   for (i in 1:nsim) {
     ## Scramble order of nodes and put new ID order into old matrix
-    matrix <- prox_mat_1
     names <- colnames(matrix)
     new_names <- sample(names)
     colnames(matrix) <- new_names
@@ -157,6 +144,7 @@ func_permute_strength <- function(matrix, attributes, title){
 ## Using my first function to do the assortativity permutations on each of my two replicates
 func_permute_assoc(matrix = prox_mat_prelim, attributes = attr_prelim, title = "Assortativity prelim exp")
 func_permute_assoc(matrix = prox_mat_1, attributes = attr_1, title = "Assortativity replicate 1")
+    ## Null distribution weirdly skewed?? 
 
 ## Using my second function to do the strength permutations on each of my two replicates
 func_permute_strength(matrix = prox_mat_prelim, attributes = attr_prelim, title = "Male vs. female strength prelim exp")     
