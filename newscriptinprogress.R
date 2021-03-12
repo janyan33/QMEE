@@ -1,4 +1,4 @@
-## setwd("C:/Users/jy33/OneDrive/Desktop/R/QMEE")
+ setwd("C:/Users/jy33/OneDrive/Desktop/R/QMEE")
 
 library(tidyverse)
 library(asnipe)
@@ -9,13 +9,12 @@ library(assortnet)
 groups <- read.csv("data/bbsna_aggregations.csv")
 attr <- read.csv("data/bbsna_attributes.csv", stringsAsFactors = FALSE)
 attr_1 <- attr %>% 
-  filter(replicate == 1)
+  filter(replicate == 1) %>% 
+  filter(notes != "died")
 
 attr_2 <- attr %>% 
   filter(replicate == 2) %>% 
-  filter(ID != "Q") #Could probably avoid splitting this but will fix this in the future
-
-
+  filter(notes != "died") #Could probably avoid splitting this but will fix this in the future
 
 ## Creating a generic function that creates an association matrix for each rep
 func_make_matrix <- function(matrix) {
@@ -57,7 +56,6 @@ func_permute_assoc <- function(matrix, attributes, title){
   ## Doing the permutations using a for loop
   for (i in 1:nsim) {
     ## Scramble order of nodes and put new ID order into old matrix
-    matrix <- prox_mat_1
     names <- colnames(matrix)
     new_names <- sample(names)
     colnames(matrix) <- new_names
@@ -91,7 +89,6 @@ func_permute_assoc <- function(matrix, attributes, title){
 
 ## Function that runs permutations on strength
 func_permute_strength <- function(matrix, attributes, title){
-  
   prox_igraph <- graph_from_adjacency_matrix(matrix, diag = FALSE, weighted = TRUE, mode = "undirected")
   observed_strength <- as.data.frame(cbind(strength = strength(prox_igraph, v = V(prox_igraph), mode = c("all"), loops = FALSE), 
                                            sex = attributes$sex))
@@ -164,7 +161,7 @@ func_lm_strength <- function(matrix, attributes){
 func_lm_strength(matrix = prox_mat_1, attributes = attr_1)
 func_lm_strength(matrix = prox_mat_2, attributes = attr_2)
 
-
+#################################################################################################
 
 
 prox.igraph <- graph_from_adjacency_matrix(prox_mat_3, diag = FALSE, weighted = TRUE, mode = "undirected")
@@ -182,18 +179,29 @@ V(prox.igraph)$size <- V(prox.igraph)$strength*6
 
 plot(prox.igraph, edge.curved = 0, edge.color = "black", weighted = TRUE, layout = layout_nicely(prox.igraph)) 
 
-
-
-
-
-
-
-
 V(prox_2)$size <- V(prox_2)$strength
 
 plot(prox_2, edge.curved = 0, layout = layout_nicely(prox_2), edge.color = "black", main = "Replicate 2 aggregation network")
 
+##########################################################################################
 
+prox.igraph <- graph_from_adjacency_matrix(prox_mat_2, diag = FALSE, weighted = TRUE, mode = "undirected")
+prox.igraph <- set_vertex_attr(prox.igraph, "sex", value = attr_2$sex)
+
+strength <- strength(prox.igraph, v = V(prox.igraph), mode = c("all"), loops = F)
+prox.igraph <- set_vertex_attr(prox.igraph, "strength", value = strength)
+
+V(prox.igraph)$color <- ifelse(V(prox.igraph)$sex == "Female", "red", "blue")
+V(prox.igraph)$label.color <- "white"
+E(prox.igraph)$width <- E(prox.igraph)$weight*11
+V(prox.igraph)$size <- V(prox.igraph)$strength*10
+
+
+plot(prox.igraph, edge.curved = 0, edge.color = "black", weighted = TRUE, layout = layout_nicely(prox.igraph)) 
+
+V(prox_2)$size <- V(prox_2)$strength
+
+plot(prox_2, edge.curved = 0, layout = layout_nicely(prox_2), edge.color = "black", main = "Replicate 2 aggregation network")
 
 
 
