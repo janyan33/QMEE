@@ -35,13 +35,11 @@ prox_mat_prelim <- groups %>%
   filter(Replicate == "prelim") %>% 
   func_make_matrix()
 
-stopifnot(nrow(prox_mat_1) == nrow(attr_1))
 
 prox_mat_1 <- groups %>% 
   filter(Replicate == 1) %>% 
     func_make_matrix()
-
-stopifnot(nrow(prox_mat_2) == nrow(attr_2))
+stopifnot(nrow(prox_mat_1) == nrow(attr_1))
 
 ## HYPOTHESIS 1: Are bedbug populations assorted by sex?
 ## BMB: "how are"? Can you make a more specific prediction?
@@ -144,7 +142,22 @@ func_permute_strength <- function(matrix, attributes, title){
 ## Using my first function to do the assortativity permutations on each of my two replicates
 func_permute_assoc(matrix = prox_mat_prelim, attributes = attr_prelim, title = "Assortativity prelim exp")
 func_permute_assoc(matrix = prox_mat_1, attributes = attr_1, title = "Assortativity replicate 1")
-    ## Null distribution weirdly skewed?? 
+## Null distribution weirdly skewed??
+## BMB: what's weird about it being skewed
+
+library(Matrix)
+iplot <- function(M, sort=TRUE) {
+    if (sort) {
+        oo <- hclust(dist(M))$order
+        M <- M[oo,oo]
+    }
+    image(Matrix(M),
+      scales=list(x=list(at=seq(nrow(M)),labels=rownames(M), rot=90),
+                  y=list(at=seq(ncol(M)),labels=colnames(M))))
+}
+iplot(prox_mat_prelim)
+iplot(prox_mat_1) ## more structured
+
 
 ## Using my second function to do the strength permutations on each of my two replicates
 func_permute_strength(matrix = prox_mat_prelim, attributes = attr_prelim, title = "Male vs. female strength prelim exp")     
@@ -162,3 +175,5 @@ func_lm_strength <- function(matrix, attributes){
 
 func_lm_strength(matrix = prox_mat_prelim, attributes = attr_prelim)
 func_lm_strength(matrix = prox_mat_1, attributes = attr_1)
+
+## nice. 2.3
