@@ -26,6 +26,11 @@ summary(lm_int)  # We also have predictions about the treatment (high vs. low se
    # Interaction not significant but I should keep it cause I wanted to test it
 plot(lm_int) 
 
+## BMB: this is all good. You should look at the diagnostics **before** you
+## look at the summaries (= p-values); that is, you should decide whether you
+## think the model needs to be modified before you have a chance to decide
+## that you do (or don't) like the results
+
 ## PLOTS DISCUSSION
 ## Residuals vs. fitted: 
    # The red line looks nearly flat so it looks like there's no bias or non-linear relationships that are not accounted for by the model
@@ -57,5 +62,11 @@ pairs(e1)
 plot(e1) # Looking at the picture
 
 ## Visualizing strength means using a boxplot
-strength_boxplot <- ggplot(data = attr, aes(y = prox_strength, x = treatment, fill = sex)) + geom_boxplot() 
+strength_boxplot <- ggplot(data = attr, aes(y = prox_strength, x = treatment, fill = sex)) + geom_boxplot(notch=TRUE) 
 strength_boxplot
+## BMB: one issue is that the boxplot is **not** inferential, it's descriptive
+## adding notches (as shown) gives approx CIs on the medians, but these are wonky
+## here because the data set is too small (i.e. the width of the CI goes beyond
+## the hinges (approx IQR)
+
+## grade: 2.1/3
