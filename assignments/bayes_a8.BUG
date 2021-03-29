@@ -1,0 +1,10 @@
+sex_model <- function() {
+  for (i in 1:N) { 
+    ## Gamma model?
+    prox_strength[i] ~ dgamma(pred[i], tau)
+    pred[i] <- m_sex*sex[i] + int
+  }
+  ## priors
+  m_sex ~ dnorm(0, .001)
+  tau ~ dgamma(.001, .001)
+}  
