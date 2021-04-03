@@ -29,6 +29,12 @@ plot(gamma_model)
 ## Scale-location (heteroscedasticity):
 # The red line fluctuates a bit with fitted values which indicates there's some heteroscedasticity (change in variance across the dataset) but I don't think the pattern is strong enough to be any cause for concern
 
+## BMB: Hmm, I'm slightly worried about this one. Scale-location actually
+## looked better for the LM.
+m2 <- update(lm_model, y=TRUE, qr=TRUE)  ## required for boring technical reasons
+MASS::boxcox(m2)
+## suggests sqrt transform or nothing
+
 ## Residuals vs. leverage:
 # Since I can't even see the Cook's distance contour lines, there seems to be no particularly influential data point meaning I shouldn't treat any points as outliers
 
@@ -38,17 +44,19 @@ plot(gamma_model)
 
 ## Plotting coefficients 
 dwplot(gamma_model) # 95% confidence interval for treatmentlow doesn't overlap 0 meaning the effect (strength is lower in low vs. high treatments) is clear
+## BMB: can you interpret the QUANTITATIVE meaning of the parameter?
 
 ## Pairwise comparisions
 e1 <- emmeans(gamma_model, c("sex", "treatment"))
 summary(e1)
 pairs(e1)
-plot(e1) # Looking at the picture
+plot(e1, comparisons=TRUE) # Looking at the picture
+## BMB: add arros for 'overlappingness' (see the vignette)
 
 ## Visualizing strength means using a boxplot
 ggplot(data = attr, aes(y = prox_strength, x = treatment, fill = sex)) + geom_boxplot() 
 
-
+## grade: 2.1
 
 
 
