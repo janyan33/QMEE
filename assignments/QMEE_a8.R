@@ -22,7 +22,9 @@ attr_dat <- with(attr,
 
 ## Bayes model (I'm honestly not sure if this is done correctly at all)
 ## I used a gamma-log link function b/c I think that's what I should do when my response variable (strength) is a positive continuous variable
+## JD: It's _one_ good thing to do; lognormal is another
 
+## JD: No need to have lots of different prec variables all set to tau
 sex_model <- function() {
   for (i in 1:N) { 
     ## Gamma model?
@@ -46,6 +48,7 @@ jags_1
 
 # Rhat looks fine? close to 1
 # n.eff seems too small so maybe my samples are highly auto-correlated and my model is bad..
+# JD: In this case you probably need to just run a little longer
 
 ## Plotting stuff
 bb <- jags_1$BUGSoutput
@@ -53,6 +56,7 @@ mm <- as.mcmc.bugs(bb)
 plot(jags_1) ## large-format graph
 xyplot(mm)  ## prettier trace plot
 ## trace plot looks ok I think? looks like a catepillar with no obvious patterns..
+## JD: Trace plots on top look like you need to run a little longer
 
 densityplot(mm) ## prettier density plot
 print(dwplot(jags_1)) 
@@ -62,4 +66,6 @@ freq_model <- lm(data = attr, prox_strength ~ sex)
 summary(freq_model)
 dwplot(freq_model)
 
+## JD: OK, and what do you see when you compare?
+## Grade: 1.9/3
 
